@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../contexts/UserContext";
 
 const Blogs = () => {
+  const {user, createUser} = useContext(AuthContext);
+  console.log(user, createUser)
   return (
     <div className="p-5">
       <h2>What is Cors?</h2>
@@ -97,7 +100,6 @@ const Blogs = () => {
         CommonJS loader cannot be used to load ES Modules. The ECMAScript Module
         loader is asynchronous. It’s responsible for handling both import
         statements and import() expressions, does not support folders as modules
-        (directory indexes such as ./startup/index.js must be fully specified),
         does not search for extensions, and accepts only .js, .mjs, and .cjs
         extensions for JavaScript text files. ES Modules can be used to load
         JavaScript CommonJS modules.

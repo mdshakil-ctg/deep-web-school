@@ -25,9 +25,9 @@ const Login = () => {
       }
     })
     .catch(error=>console.log(error))
-    .finally(() =>{
-      setLoding(false);
-    })
+    // .finally(() =>{
+    //   setLoding(false);
+    // })
     
   }
 

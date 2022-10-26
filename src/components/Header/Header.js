@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 import Logo from './logo.png'
@@ -11,6 +10,7 @@ import Logo from './logo.png'
 const Header = () => {
   
     const {user, logOut} = useContext(AuthContext);
+    console.log(user)
 
     const handleLogout = () =>{
       logOut()
@@ -28,19 +28,19 @@ const Header = () => {
           <Nav className='ms-auto'>
             <Nav>
               <Link to='/courses' className='text-decoration-none text-white'>Courses</Link>
-              <Link to='/faq' className='text-decoration-none text-white mx-3'>FAQ</Link>
+              <Link to='/blogs' className='text-decoration-none text-white mx-3'>FAQ</Link>
               <Link to='/blogs' className='text-decoration-none text-white'>Blogs</Link>
             </Nav>
             <Nav>
               
               
             </Nav>
-            {/* <img src={user.photoURL} alt=''></img> */}
-            {/* <p>{user.displayName}</p> */}
+            
 
             {
-              user?.uid ? <Link onClick={handleLogout}>Log out</Link> : <Link to='/login' className='mx-3 text-decoration-none text-white'>Log In</Link>
+              user?.uid ? <button className='text-white' onClick={handleLogout}>logout</button>: <Link to='/login' className='mx-3 text-decoration-none text-white'>Log In</Link>
             }
+
 
 
           </Nav>

@@ -1,4 +1,3 @@
-import { parseAttrSelector } from 'daisyui/src/lib/postcss-prefixer/utils';
 import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,7 +5,7 @@ import { AuthContext } from '../../contexts/UserContext';
 
 const Register = () => {
 
-   const {createUser} = useContext(AuthContext)
+   const {createUser, setUser} = useContext(AuthContext)
 
    const handleRegister = (event) =>{
 
@@ -22,6 +21,7 @@ const Register = () => {
       .then(result =>{
          const user = result.user;
          console.log(user)
+         setUser(user);
       })
       .catch(err=>console.log(err))
 

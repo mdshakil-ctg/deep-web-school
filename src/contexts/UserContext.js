@@ -12,7 +12,7 @@ const auth = getAuth(app)
 
 const UserContext = ({children}) => {
 
-   const [user, setUser] = useState({});
+   const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
 
    const createUser = (email, password) =>{
@@ -42,9 +42,11 @@ const UserContext = ({children}) => {
 
    useEffect(()=>{
       const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
-         console.log('state changed user', currentUser)
-         if(currentUser === null){
+         console.log('currentUser',currentUser)
+         
+         if(currentUser !== null){
             setUser(currentUser);
+            console.log('ekhane set hocche user', currentUser)
          }
          setLoading(false);
       })
@@ -53,7 +55,7 @@ const UserContext = ({children}) => {
       } ;
    }, [])
 
-   const authInfo = {user, setLoading, loading, createUser, loginWithGoogle, loginWithGithub, signIn, logOut};
+   const authInfo = {user, setUser, loading, createUser, loginWithGoogle, loginWithGithub, signIn, logOut};
    return (
       <AuthContext.Provider value={authInfo}>
          {children}
