@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from './../../contexts/UserContext';
 
 const Login = () => {
 
-  const {loginWithGoogle, loginWithGithub, logOut} = useContext(AuthContext)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
+  const {loginWithGoogle, loginWithGithub, signIn, logOut, setLoding} = useContext(AuthContext)
 
   const handleLogin =(event) =>{
     event.preventDefault();
@@ -13,8 +16,19 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password)
 
+    signIn(email, password)
+    .then(result=>{
+      const user = result.user;
+      console.log(user);
+      if(user.email){
+        navigate(from, {replace:true})
+      }
+    })
+    .catch(error=>console.log(error))
+    .finally(() =>{
+      setLoding(false);
+    })
     
-
   }
 
   const googleSignIn = () =>{
@@ -35,9 +49,12 @@ const Login = () => {
     .catch(err => console.log(err))
   }
 
+  
+
   const handleLogout = () =>{
     logOut()
-    
+    .then(result => console.log(result))
+    .catch(err => console.error(err))
   }
 
    return (
@@ -70,7 +87,7 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button type='submit' className="btn btn-primary">Login</button>
+          <button  type='submit' className="btn btn-primary">Login</button>
         </div>
         <div className="form-control mt-6">
           <button onClick={googleSignIn} className="btn btn-primary">Login with google</button>

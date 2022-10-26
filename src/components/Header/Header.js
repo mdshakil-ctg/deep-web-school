@@ -10,8 +10,13 @@ import Logo from './logo.png'
 
 const Header = () => {
   
-    const {user} = useContext(AuthContext);
-    console.log(user);
+    const {user, logOut} = useContext(AuthContext);
+
+    const handleLogout = () =>{
+      logOut()
+      .then(result => console.log(result))
+      .catch(err => console.error(err))
+    }
    return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -27,10 +32,17 @@ const Header = () => {
               <Link to='/blogs' className='text-decoration-none text-white'>Blogs</Link>
             </Nav>
             <Nav>
-              <Link to='/login' className='mx-3 text-decoration-none text-white'>Log In</Link>
+              
+              
             </Nav>
             {/* <img src={user.photoURL} alt=''></img> */}
             {/* <p>{user.displayName}</p> */}
+
+            {
+              user?.uid ? <Link onClick={handleLogout}>Log out</Link> : <Link to='/login' className='mx-3 text-decoration-none text-white'>Log In</Link>
+            }
+
+
           </Nav>
         </Navbar.Collapse>
       </Container>

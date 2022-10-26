@@ -4,8 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
 const CourseDetails = ({course}) => {
-   const {id, image_url, discription, name, price, ratings, students, instructor, course_id, details} = course;
-   console.log(course);
+   const { image_url, name, price, ratings, course_id, details} = course;
    return (
       <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={image_url} alt='#' />

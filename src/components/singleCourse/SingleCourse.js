@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, Link } from 'react-router-dom';
 
 const SingleCourse = () => {
    const course = useLoaderData();
    console.log(course);
-   const {image_url, name, price, ratings, students, instructor, discription} = course
+   const {course_id, image_url, name, price, ratings, students, instructor, discription} = course
    return (
       <div className='d-flex flex-col justify-center px-20'>
          <img  src={image_url} alt='course'></img>
@@ -14,7 +14,7 @@ const SingleCourse = () => {
          <p>{instructor}</p>
          <p>{ratings}</p>
          <p>{discription}</p>
-
+         <Link to={`/checkout/${course_id}`}><button>Premium access</button></Link>
       </div>
    );
 };
