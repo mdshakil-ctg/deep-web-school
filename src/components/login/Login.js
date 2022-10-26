@@ -1,11 +1,10 @@
-import { Result } from 'postcss';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from './../../contexts/UserContext';
 
 const Login = () => {
 
-  const {loginWithGoogle, loginWithGithub} = useContext(AuthContext)
+  const {loginWithGoogle, loginWithGithub, logOut} = useContext(AuthContext)
 
   const handleLogin =(event) =>{
     event.preventDefault();
@@ -34,6 +33,11 @@ const Login = () => {
       console.log(user);
     })
     .catch(err => console.log(err))
+  }
+
+  const handleLogout = () =>{
+    logOut()
+    
   }
 
    return (
@@ -73,6 +77,9 @@ const Login = () => {
         </div>
         <div className="form-control mt-6">
           <button onClick={githubSignIn} className="btn btn-primary">Login with github</button>
+        </div>
+        <div className="form-control mt-6">
+          <button onClick={handleLogout} className="btn btn-primary">Log Out</button>
         </div>
       </form>
     </div>

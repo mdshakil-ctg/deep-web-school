@@ -8,9 +8,9 @@ const Main = () => {
    return (
       <div>
          <Header></Header>
-         <div className='grid grid-cols-3 gap-4'>
-            <div><LeftNav></LeftNav></div>
-            <div className='col-span-2'><Outlet></Outlet></div>
+         <div>
+            
+            <Outlet></Outlet>
          </div>
          <Footer></Footer>
       </div>
