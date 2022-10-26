@@ -8,8 +8,8 @@ const Courses = () => {
    console.log(courses)
    return (
       <div className='grid grid-cols-3'>
-      <div><LeftNav></LeftNav></div>
-      <div className='col-span-2 grid grid-cols-2 gap-4'>
+      <div><LeftNav ></LeftNav></div>
+      <div className='col-span-2 grid grid-cols-2 gap-2'>
          {
             courses.map(course=> <CourseDetails key={course.id} course={course}></CourseDetails>)
          }
