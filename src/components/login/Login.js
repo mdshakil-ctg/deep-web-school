@@ -1,7 +1,41 @@
-import React from 'react';
+import { Result } from 'postcss';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './../../contexts/UserContext';
 
 const Login = () => {
+
+  const {loginWithGoogle, loginWithGithub} = useContext(AuthContext)
+
+  const handleLogin =(event) =>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password)
+
+    
+
+  }
+
+  const googleSignIn = () =>{
+    loginWithGoogle()
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => console.log(err))
+  }
+
+  const githubSignIn = () =>{
+    loginWithGithub()
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => console.log(err))
+  }
+
    return (
       <div>
          
@@ -12,18 +46,18 @@ const Login = () => {
       <p className="py-6">You have to login first to gain our primium services. There are huge amount of content here.</p>
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <div className="card-body">
+      <form onSubmit={handleLogin} className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="text" placeholder="email" className="input input-bordered" />
+          <input name='email' type="text" placeholder="email" className="input input-bordered" />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" placeholder="password" className="input input-bordered" />
+          <input name='password' type="text" placeholder="password" className="input input-bordered" />
           <label className="label">
             <Link to='/forget' className="label-text-alt link link-hover">Forgot password?</Link>
           </label>
@@ -32,9 +66,15 @@ const Login = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button type='submit' className="btn btn-primary">Login</button>
         </div>
-      </div>
+        <div className="form-control mt-6">
+          <button onClick={googleSignIn} className="btn btn-primary">Login with google</button>
+        </div>
+        <div className="form-control mt-6">
+          <button onClick={githubSignIn} className="btn btn-primary">Login with github</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
