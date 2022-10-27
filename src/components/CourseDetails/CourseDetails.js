@@ -6,17 +6,17 @@ import { Link } from 'react-router-dom';
 const CourseDetails = ({course}) => {
    const { image_url, name, price, ratings, course_id, details} = course;
    return (
-      <Card style={{ width: '18rem' }}>
+      <Card>
       <Card.Img variant="top" src={image_url} alt='#' />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
-        <Card.Text>
+        <Card.Text className='mb-0'>
           {details}
         </Card.Text>
-        <p>{ratings}</p>
-        <p>${price}</p>
+        <p className='m-0'>Ratings : {ratings}</p>
+        <p className='m-0'>Price : ${price}</p>
 
-        <Link to={`/${course_id}`}><Button className='w-full' variant="primary">View Details</Button></Link>
+        <Link to={`/${course_id}`}><Button className='w-full' variant="warning">View Details</Button></Link>
       </Card.Body>
     </Card>
    );

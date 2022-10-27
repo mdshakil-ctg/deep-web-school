@@ -27,7 +27,7 @@ const Header = () => {
         <Navbar.Brand href='#' className='font-semibold'>DEEP WEB SCHOOL</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className='ms-auto'>
+          <Nav className='ms-auto text-center'>
             <Nav>
               <Link to='/courses' className='text-decoration-none text-white'>Courses</Link>
               <Link to='/blogs' className='text-decoration-none text-white mx-3'>FAQ</Link>
@@ -37,21 +37,17 @@ const Header = () => {
 
             </Nav>
             
-
-
-            {
+           <div className=''>
+           {
               user?.uid ? <button className='text-white mx-4 font-semibold' onClick={handleLogout}>logout</button>: <Link to='/login' className='mx-3 text-decoration-none text-white'>Log In</Link>
             }
             
-            
-            {/* {
-              user.photoURL ? <Image></Image>
-            } */}
-
+           </div>
+           
           </Nav>
           <div>
             {
-              user?.uid ? <img src={user.photoURL} alt=''></img>: <Link to='/blogs' className='text-decoration-none text-white'>  <UserCircleIcon className="h-6 w-6 text-blue-500"/></Link>
+              user?.uid ? <img src={user.photoURL} alt=''></img>: <Link to='/blogs' className='text-decoration-none text-white'>  <UserCircleIcon className="h-6 w-6 mx-auto text-blue-500"/></Link>
             }
             </div>
         </Navbar.Collapse>

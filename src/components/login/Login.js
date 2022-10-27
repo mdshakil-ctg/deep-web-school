@@ -86,18 +86,16 @@ const Login = () => {
             <p><small>Don't Have an Account?</small> <Link to='/register' className="label-text-alt link link-hover font-bold">Register Here</Link></p>
           </label>
         </div>
-        <div className="form-control mt-6">
-          <button  type='submit' className="btn btn-primary">Login</button>
+        <div className="mt-0">
+          <button  type='submit' className="btn btn-outline-warning w-full">Login</button>
         </div>
-        <div className="form-control mt-6">
-          <button onClick={googleSignIn} className="btn btn-primary">Login with google</button>
+        <div className=" mt-0">
+          <button onClick={googleSignIn} className="btn btn-outline-warning w-full">Login with google</button>
         </div>
-        <div className="form-control mt-6">
-          <button onClick={githubSignIn} className="btn btn-primary">Login with github</button>
+        <div className="mt-0">
+          <button onClick={githubSignIn} className="btn btn-outline-warning w-full">Login with github</button>
         </div>
-        <div className="form-control mt-6">
-          <button onClick={handleLogout} className="btn btn-primary">Log Out</button>
-        </div>
+        
       </form>
     </div>
   </div>

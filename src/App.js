@@ -5,7 +5,7 @@ import { router } from './routes/routes';
 
 function App() {
   return (
-    <div>
+    <div className=''>
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
