@@ -1,5 +1,6 @@
 import Blogs from "../components/blogs/Blogs";
 import CheckOut from "../components/CheckOut/CheckOut";
+import ErrorPage from "../components/errorPages/ErrorPage";
 import Login from "../components/login/Login";
 import Register from "../components/Register/Register";
 import SingleCourse from "../components/singleCourse/SingleCourse";
@@ -48,5 +49,9 @@ export const router = createBrowserRouter([
          }
       ]
    },
+   {
+      path: '*',
+      element: <ErrorPage></ErrorPage>
+   }
    
 ]);
