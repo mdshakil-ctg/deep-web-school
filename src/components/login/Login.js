@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from './../../contexts/UserContext';
 
@@ -7,7 +7,9 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || '/';
-  const {loginWithGoogle, loginWithGithub, signIn, logOut, setLoding} = useContext(AuthContext)
+  const {loginWithGoogle, loginWithGithub, signIn, logOut,} = useContext(AuthContext);
+
+  const [error, setError] = useState(null);
 
   const handleLogin =(event) =>{
     event.preventDefault();
@@ -15,6 +17,8 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password)
+
+
 
     signIn(email, password)
     .then(result=>{
@@ -24,7 +28,9 @@ const Login = () => {
         navigate(from, {replace:true})
       }
     })
-    .catch(error=>console.log(error))
+    .catch(error=>{
+      setError(error.message)
+    })
     // .finally(() =>{
     //   setLoding(false);
     // })
@@ -85,6 +91,11 @@ const Login = () => {
           <label className="label">
             <p><small>Don't Have an Account?</small> <Link to='/register' className="label-text-alt link link-hover font-bold">Register Here</Link></p>
           </label>
+            <div className='text-danger'>
+            {
+              error && <p>{error}</p>
+            }
+            </div>
         </div>
         <div className="mt-0">
           <button  type='submit' className="btn btn-outline-warning w-full">Login</button>
