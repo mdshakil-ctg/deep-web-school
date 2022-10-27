@@ -53,7 +53,7 @@ const Login = () => {
 
   const handleLogout = () =>{
     logOut()
-    .then(result => console.log(result))
+    .then( ()=> {})
     .catch(err => console.error(err))
   }
 

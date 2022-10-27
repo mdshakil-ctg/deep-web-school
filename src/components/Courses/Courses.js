@@ -5,7 +5,6 @@ import LeftNav from '../leftNav/LeftNav';
 
 const Courses = () => {
    const courses = useLoaderData();
-   console.log(courses)
    return (
       <div className='grid grid-cols-3'>
       <div><LeftNav ></LeftNav></div>

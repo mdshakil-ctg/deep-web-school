@@ -5,8 +5,8 @@ const CheckOut = () => {
    const data = useLoaderData();
    const {name} = data ;
    return (
-      <div>
-         <h1>this is private checkout page for: {name}</h1>
+      <div className='p-5 vh-100'>
+         <h1>This is private checkout page for: {name}</h1>
       </div>
    );
 };
