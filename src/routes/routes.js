@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
          {
             path: '/courses',
             element: <Courses></Courses>,
-            loader: () => fetch('http://localhost:5000/courses')
+            loader: () => fetch('https://web-development-server-mdshakil-ctg.vercel.app/courses')
          },
          {
             path: '/blogs',
@@ -40,12 +40,12 @@ export const router = createBrowserRouter([
          {
             path: '/:id',
             element: <SingleCourse></SingleCourse>,
-            loader: ({params}) =>fetch(`http://localhost:5000/${params.id}`) 
+            loader: ({params}) =>fetch(`https://web-development-server-mdshakil-ctg.vercel.app/${params.id}`) 
          },
          {
             path:'/checkout/:id',
             element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-            loader: ({params}) =>fetch (`http://localhost:5000/${params.id}`)
+            loader: ({params}) =>fetch (`https://web-development-server-mdshakil-ctg.vercel.app/${params.id}`)
          }
       ]
    },

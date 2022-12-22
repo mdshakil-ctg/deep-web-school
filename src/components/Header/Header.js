@@ -3,20 +3,21 @@ import { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 import Logo from './logo.png';
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 
 const Header = () => {
-  
+  const navigate = useNavigate();
     const {user, logOut} = useContext(AuthContext);
     console.log(user)
-
     const handleLogout = () =>{
       logOut()
-      .then(result => console.log(result))
+      .then(result => {
+        navigate('/')
+      })
       .catch(err => console.error(err))
     }
    return (
@@ -32,22 +33,18 @@ const Header = () => {
               <Link to='/courses' className='text-decoration-none text-white'>Courses</Link>
               <Link to='/blogs' className='text-decoration-none text-white mx-3'>FAQ</Link>
               <Link to='/blogs' className='text-decoration-none text-white'>Blogs</Link>
-
-              
-
             </Nav>
             
            <div className=''>
            {
-              user?.uid ? <button className='text-white mx-4 font-semibold' onClick={handleLogout}>logout</button>: <Link to='/login' className='mx-3 text-decoration-none text-white'>Log In</Link>
+              user?.uid ? <a href='/'><button className='text-white mx-4 font-semibold' onClick={handleLogout}>logout</button></a>: <Link to='/login' className='mx-3 text-decoration-none text-white'>Log In</Link>
             }
-            
            </div>
            
           </Nav>
           <div>
             {
-              user?.uid ? <img src={user.photoURL} alt=''></img>: <Link to='/blogs' className='text-decoration-none text-white'>  <UserCircleIcon className="h-6 w-6 mx-auto text-blue-500"/></Link>
+              user?.uid ? <img src={user?.photoURL} style={{width:'30px'}} alt=''></img>: <Link to='/blogs' className='text-decoration-none text-white'>  <UserCircleIcon className="h-6 w-6 mx-auto text-blue-500"/></Link>
             }
             </div>
         </Navbar.Collapse>

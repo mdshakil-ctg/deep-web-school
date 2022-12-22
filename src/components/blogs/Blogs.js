@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../contexts/UserContext";
+
 
 const Blogs = () => {
-  const {user, createUser} = useContext(AuthContext);
-  console.log(user, createUser)
   return (
     <div className="p-5">
       <h2>What is Cors?</h2>

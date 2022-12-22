@@ -7,7 +7,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || '/';
-  const {loginWithGoogle, loginWithGithub, signIn, logOut,} = useContext(AuthContext);
+  const {loginWithGoogle, loginWithGithub, signIn} = useContext(AuthContext);
 
   const [error, setError] = useState(null);
 
@@ -16,14 +16,12 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password)
 
 
 
     signIn(email, password)
     .then(result=>{
       const user = result.user;
-      console.log(user);
       if(user.email){
         navigate(from, {replace:true})
       }
@@ -31,9 +29,6 @@ const Login = () => {
     .catch(error=>{
       setError(error.message)
     })
-    // .finally(() =>{
-    //   setLoding(false);
-    // })
     
   }
 
@@ -41,27 +36,10 @@ const Login = () => {
     loginWithGoogle()
     .then(result => {
       const user = result.user;
-      console.log(user);
+      navigate(from, {replace: true})
     })
     .catch(err => console.log(err))
-  }
-
-  const githubSignIn = () =>{
-    loginWithGithub()
-    .then(result =>{
-      const user = result.user;
-      console.log(user);
-    })
-    .catch(err => console.log(err))
-  }
-
-  
-
-  const handleLogout = () =>{
-    logOut()
-    .then( ()=> {})
-    .catch(err => console.error(err))
-  }
+  }  
 
    return (
       <div>
@@ -103,9 +81,7 @@ const Login = () => {
         <div className=" mt-0">
           <button onClick={googleSignIn} className="btn btn-outline-warning w-full">Login with google</button>
         </div>
-        <div className="mt-0">
-          <button onClick={githubSignIn} className="btn btn-outline-warning w-full">Login with github</button>
-        </div>
+       
         
       </form>
     </div>
